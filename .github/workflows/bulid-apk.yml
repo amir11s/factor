@@ -18,6 +18,8 @@ jobs:
       - run: npm install
       - run: cp node_modules/html2canvas/dist/html2canvas.min.js www/
       - run: npx cap add android
+      - run: cp native/*.java android/app/src/main/java/com/hejab/factor/
+      - run: sed -i '/^dependencies {/a implementation "androidx.print:print:1.0.0"' android/app/build.gradle
       - run: npx @capacitor/assets generate --android
       - run: npx cap sync android
       - run: cd android && chmod +x gradlew && ./gradlew assembleDebug
